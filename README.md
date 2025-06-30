@@ -41,7 +41,7 @@ Generate short URLs, track visits, and redirect instantly.
 ```
 
 
-⚙️ Installation
+### ⚙️ Installation
 
 ### 1. Clone the repository
 ```bash
@@ -117,5 +117,5 @@ Returns number of visits and timestamp log.
 - QR code generation
 
 ### 👩‍💻 Author
-Made with ❤️ by Charul192
-Feel free to connect or contribute!
+- Made with ❤️ by Charul192
+- Feel free to connect or contribute!
