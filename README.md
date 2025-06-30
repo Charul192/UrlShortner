@@ -65,7 +65,16 @@ Make sure MongoDB is running on your machine.
 Server will start on:
 http://localhost:8001
 
+## 🛠️ MongoDB Setup
 
+Make sure MongoDB is installed and running locally.
+
+In the `index.js` file, you’ll see this line:
+
+```js
+connectToMongoDB("mongodb://<your-host>:<port>/<your-database-name>")
+```
+You have to replace "mongodb://<your-host>:<port>/<your-database-name>" with your own MongoDB URI if needed.
 
 ## 🧪 API Endpoints
 
@@ -85,7 +94,7 @@ Response:
     }
 ```
 
-###🔁 GET /:shortId
+### 🔁 GET /:shortId
 Redirects to the original URL.
 Example:
 http://localhost:8001/abc123 → redirects to https://www.example.com
