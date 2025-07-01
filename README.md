@@ -129,5 +129,5 @@ http://localhost:8001/abc123 → redirects to https://www.example.com
 ---
 
 ## 👩‍💻 Author
-Made with ❤️ by Charul192
-Feel free to connect or contribute!
+- Made with ❤️ by Charul192
+- Feel free to connect or contribute!
