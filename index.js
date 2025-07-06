@@ -1,12 +1,19 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
+const staticRoute = require('./routes/staticroute')
 const URL = require('./models/url');
+const {restrictToLoggedinUserOnly, checkAuth} = require("./middlewares/auth");
+
 const app = express();
 const PORT = 8001;
 
+// connectToMongoDB("<your-host>:<port>/<your-database-name>").then(() => console.log("MongoDB connected"));
+
 const router = require("./routes/staticroute");
+const userRoute = require('./routes/user');
 
 //btane k liye ki kaha rkhi hain ejs files
 const path = require("path");
@@ -23,6 +30,7 @@ app.use(express.json());
 //form data ko parse krne k liye ek aur middleware chahiye hogaa
 app.use(express.urlencoded({extended: false}));
 
+app.use(cookieParser());
 
 //ejs ki example
 // app.get("/test", async (req, res) => {
@@ -32,9 +40,13 @@ app.use(express.urlencoded({extended: false}));
 //     });
 // })
 
-app.use("/url", urlRoute);
+app.use("/url",restrictToLoggedinUserOnly, urlRoute);
+app.use("/user", userRoute);
+app.use("/", checkAuth ,router);
 
+//agar koi user route pe jaata h toh yahan divert krdo
 app.use("/", router);
+
 
 app.get('/:shortId', async (req, res) => {
     const shortId = req.params.shortId;
@@ -47,6 +59,9 @@ app.get('/:shortId', async (req, res) => {
     },
 }
 );
+  if (!entry) {
+        return res.status(404).send("Short URL not found");
+    }
 res.redirect(entry.redirectURL);
 })
 

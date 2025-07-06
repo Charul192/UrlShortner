@@ -1,6 +1,7 @@
 <h1 align="center">🔗 URL Shortener</h1>
 
 <p align="center">
+  
 A minimal and efficient URL Shortening service built with <b>Node.js</b>, <b>Express</b>, <b>MongoDB</b>, and <b>EJS</b>.<br>
 Generate short URLs, track visits, and get clean stats — all with a simple UI.
 </p>
@@ -9,11 +10,10 @@ Generate short URLs, track visits, and get clean stats — all with a simple UI.
 
 ## 🚀 Features
 
-- 🔹 Create short URLs from long links  
-- 🔹 Redirect to original URLs using short IDs  
-- 🔹 Track click counts and timestamp logs (basic analytics)  
-- 🔹 EJS-powered front-end view with table listing  
-- 🔹 Clean and modular file structure  
+-  **Create short URLs** from long links
+-  **Redirect** to original URLs using short links
+-  **Track clicks** with timestamps (basic analytics)
+-  Clean and modular file structure
 
 ---
 
