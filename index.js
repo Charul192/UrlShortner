@@ -29,8 +29,8 @@ app.set("views", path.resolve("./views"));
 app.use(express.json());
 //form data ko parse krne k liye ek aur middleware chahiye hogaa
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
 
+app.use(cookieParser());
 
 //ejs ki example
 // app.get("/test", async (req, res) => {
@@ -45,6 +45,9 @@ app.use("/user", userRoute);
 app.use("/", checkAuth ,router);
 
 //agar koi user route pe jaata h toh yahan divert krdo
+app.use("/", router);
+
+
 app.get('/:shortId', async (req, res) => {
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate({

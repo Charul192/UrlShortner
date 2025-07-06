@@ -1,8 +1,9 @@
 <h1 align="center">🔗 URL Shortener</h1>
 
 <p align="center">
-A minimal and efficient URL Shortening service built with <b>Node.js</b>, <b>Express</b>, and <b>MongoDB</b>.<br>
-Generate short URLs, track visits, and redirect instantly.
+  
+A minimal and efficient URL Shortening service built with <b>Node.js</b>, <b>Express</b>, <b>MongoDB</b>, and <b>EJS</b>.<br>
+Generate short URLs, track visits, and get clean stats — all with a simple UI.
 </p>
 
 ---
@@ -18,90 +19,89 @@ Generate short URLs, track visits, and redirect instantly.
 
 ## 🛠️ Tech Stack
 
-- ⚙️ Node.js
-- 🚀 Express.js
-- 🧠 MongoDB + Mongoose
-- 🧩 shortid (for unique link generation)
-- 📬 Postman (for testing APIs)
+- ⚙️ Node.js  
+- 🚀 Express.js  
+- 🧠 MongoDB + Mongoose  
+- 🧩 shortid (for generating unique short IDs)  
+- 💻 EJS (templating engine)  
+- 📬 Postman (for API testing)  
 
 ---
 
 ## 📁 Project Structure
-  ```bash
-    url-shortener/
-    ├── controllers/
-    │ └── url.js # Logic for creating and tracking URLs
-    ├── models/
-    │ └── url.js # Mongoose schema for URL data
-    ├── routes/
-    │ └── url.js # Express route handlers
-    ├── connect.js # MongoDB connection setup
-    ├── index.js # Main server file
-    └── README.md # You're here!
+```bash
+url-shortener/
+├── controllers/ # Logic for creating/tracking URLs
+│ └── url.js
+├── models/ # Mongoose schemas
+│ └── url.js
+├── routes/ # Express route handlers
+│ ├── url.js
+│ └── staticroute.js
+├── views/ # EJS templates
+│ └── home.ejs
+├── connect.js # MongoDB connection setup
+├── index.js # Main server file
+├── package.json
+└── README.md # You're here!
 ```
 
+---
 
-### ⚙️ Installation
+## ⚙️ Installation
 
 ### 1. Clone the repository
 ```bash
-    git clone https://github.com/yourusername/url-shortener.git
-    cd url-shortener
+git clone https://github.com/Charul192/UrlShortner.git
+cd UrlShortner
 ```
-
 ### 2. Install dependencies
 ```bash
-    npm install
+npm install
 ```
-
 ### 3. Start MongoDB locally
-Make sure MongoDB is running on your machine.
-
-### 4. Run the server
+In the index.js file, you'll find this line:
 ```bash
-    nodemon index.js
- ```
-
-Server will start on:
-http://localhost:8001
-
-## 🛠️ MongoDB Setup
-
-Make sure MongoDB is installed and running locally.
-
-In the `index.js` file, you’ll see this line:
-
-```js
-connectToMongoDB("mongodb://<your-host>:<port>/<your-database-name>")
+connectToMongoDB("<your-host>:<port>/<your-database-name>").then(() => console.log("MongoDB connected"));
 ```
-You have to replace "mongodb://<your-host>:<port>/<your-database-name>" with your own MongoDB URI if needed.
+Replace it with your own MongoDB connection string.
+
+### 4. Start the server
+```bash
+nodemon index.js
+```
+
+Server runs at: http://localhost:8001
+
+---
 
 ## 🧪 API Endpoints
 
 ### 📌 POST `/url`
-
-**Create a short URL**
-Body(JSON):
-  ```bash
-      {
-  "url": "https://example.com"
-      }
+**Purpose:** Create a short URL  
+**Request Body:**
+```json
+{
+  "url": "https://www.example.com"
+}
 ```
-Response:
-```bash
-    {
-  "id": "short123"
-    }
+**Response**
+```json
+{
+  "id": "abc123"
+}
 ```
 
 ### 🔁 GET /:shortId
-Redirects to the original URL.
-Example:
+**Purpose**: Redirects to the original URL
+**Example**:
 http://localhost:8001/abc123 → redirects to https://www.example.com
 
+
 ### 📊 GET /url/analytics/:shortId
-Returns number of visits and timestamp log.
-```bash
+**Purpose**: Get number of clicks and timestamp logs
+**Response**:
+```json
 {
   "totalClicks": 2,
   "analytics": [
@@ -110,12 +110,24 @@ Returns number of visits and timestamp log.
   ]
 }
 ```
-### 💡 Future Ideas
-- Expiry support for links
-- User login system
-- Dashboard with graphs and charts
-- QR code generation
 
-### 👩‍💻 Author
+---
+
+## 📸 Screenshot
+![image](https://github.com/user-attachments/assets/8a90869e-84ef-4264-a5ff-64c9466aaa7a)
+🔗 Simple UI to generate and view short URLs  
+📊 Click count tracking displayed in a clean table layout
+
+---
+
+## 💡 Future Scope
+- ⏳ Expiry support for links
+- 👤 User login & dashboard
+- 📊 Graphs/charts for analytics
+- 📷 QR code generation
+
+---
+
+## 👩‍💻 Author
 - Made with ❤️ by Charul192
 - Feel free to connect or contribute!
